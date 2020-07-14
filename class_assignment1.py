@@ -18,7 +18,9 @@ class time:
     def display_min(self):
         tot_min=int(self.time_list1[0])*60+int(self.time_list1[3])+int(self.time_list2[0])*60+int(self.time_list2[3])
         print(tot_min,"mins")
-t1=time("4 hours and 50 mins","2 hr and 15 mins")
+t1=time(input("enter time1 in the format(e.g 4 hour and 6 min)"),input("enter time2 in the format(e.g 4 hour and 6 min)"))
 t1.add()
 t1.sub()
 t1.display_min()
+
+
