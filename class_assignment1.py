@@ -1,31 +1,24 @@
-class time:
-    def __init__(self,time1,time2):
-        self.time1=time1
-        self.time2=time2
-        self.time_list1=list(self.time1.split(" "))
-        self.time_list2=list(self.time2.split(" "))
+class Time:
+    def __init__(self,hours,mins):
+        self.hours=hours
+        self.mins=mins
+    def display_total_min(self):
+        print(self.hours*60+self.mins,"mins")
 
-    def add(self):
-        tot_add=int(self.time_list1[0])*60+int(self.time_list1[3])+int(self.time_list2[0])*60+int(self.time_list2[3])
-        tot_add_hour=tot_add/60
-        tot_add_min=tot_add%60
-        print(int(tot_add_hour),"hours",int(tot_add_min),"mins")
-    def sub(self):
-        if(int(self.time_list1[0])>=int(self.time_list2[0])):
-            tot_sub=(int(self.time_list1[0])*60+int(self.time_list1[3]))-(int(self.time_list2[0])*60+int(self.time_list2[3]))
-            tot_sub_hour=tot_sub/60
-            tot_sub_min=tot_sub%60
-            print(int(tot_sub_hour),"hours",int(tot_sub_min),"mins")
-        else:
-            tot_sub = (int(self.time_list2[0]) * 60 + int(self.time_list2[3])) - (
-                        int(self.time_list1[0]) * 60 + int(self.time_list1[3]))
-            tot_sub_hour = tot_sub / 60
-            tot_sub_min = tot_sub % 60
-            print(int(tot_sub_hour), "hours", int(tot_sub_min), "mins")
-    def display_min(self):
-        tot_min=int(self.time_list1[0])*60+int(self.time_list1[3])+int(self.time_list2[0])*60+int(self.time_list2[3])
-        print(tot_min,"mins")
-t1=time(input("enter time1 in the format (e.g 4 hours and 7 min)"),input("enter time2 in the format(e.g 4 hours and 7 min)"))
-t1.add()
-t1.sub()
-t1.display_min()
+def add(t1,t2):
+        tot_add=t1.hours*60+t1.mins+t2.hours*60+t2.mins
+        tot_hour=int(tot_add/60)
+        tot_min=tot_add%60
+        print("the adition of times is",tot_hour,"hours and",tot_min,"mins")
+def sub(t1,t2):
+        tot_sub=abs((t1.hours*60+t1.mins)-(t2.hours*60+t2.mins))
+        tot_hour = int(tot_sub / 60)
+        tot_min = tot_sub % 60
+        print("the subraction of times is", tot_hour, "hours and", tot_min, "mins")
+t1=Time(5,7)
+t2=Time(4,7)
+t1.display_total_min()
+add(t1,t2)
+
+
+
