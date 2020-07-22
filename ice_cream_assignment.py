@@ -1,55 +1,62 @@
-class Ice:
-
-    def __init__(self):
-        self.ice_types={"stick":50,"cone":70,"cup":40}
-        self.ice_flavours={"chocolate ":55,"vanila ":30,"strawberry ":46}
-        self.toppings={"choco chips":40,"caramel":30,"nuts":60}
-        self.ice=[]
-        self.rupee=[]
+class Ice_Cream:
+    def __init__(self,type,flavour):
+        self.ice_type=type
+        self.ice_flavour=flavour
+        self.ice = []
+        self.rupee = []
         self.ice_dict={}
-
-
-    def print_and_display_menu(self):
+    def print_menu_card(self):
         print("***********MENU CARD************")
-        for flavour in self.ice_flavours:
-            for type in self.ice_types:
-                ice_cream_name=flavour+type
+        for flavour in self.ice_flavour:
+            for type in self.ice_type:
+                ice_cream_name = flavour + " " + type
                 self.ice.append(ice_cream_name)
-                print("      ",flavour+type,"-",end="")
-                ice_cream_cost=self.ice_flavours[flavour]+self.ice_types[type]
+                print("      ", flavour, type, "-", end=" ")
+                ice_cream_cost = self.ice_flavour[flavour] + self.ice_type[type]
                 self.rupee.append(ice_cream_cost)
-                print(self.ice_flavours[flavour]+self.ice_types[type])
+                print(self.ice_flavour[flavour] + self.ice_type[type])
         print("************XXXXXXX************")
-        self.ice_dict=(dict(zip(self.ice,self.rupee)))
+        self.ice_dict = (dict(zip(self.ice, self.rupee)))
 
-
-    def print_and_display_total_cost(self,order,quantity):
-            for key in self.ice_dict:
-                if(key==order):
-                    print("the cost of ",key,"-",quantity*self.ice_dict[key])
-
-    def topping(self,order,quantity):
-        print("***********TOPPINGS************")
-        for key in self.toppings:
-            print(key,"-",self.toppings[key])
-        top=input("Do you want toppings, enter yes/no:")
-        if(top=="yes"):
-            top_in=input("select topping:")
-            for keys in self.toppings:
-                if(top_in==keys):
-                    for key in self.ice_dict:
-                        if (order==key):
-                            print("the cost of ", key, "-", quantity * self.ice_dict[key] + self.toppings[keys] * quantity)
+class Topping:
+    def __init__(self,topping_options):
+        self.topping_options=topping_options
+    def print_topping(self):
+        print("************Toppings**********")
+        for toppin in self.topping_options:
+            print("        ",toppin," - ",self.topping_options[toppin])
+    def toppin_total_cost(self,order,quantity):
+        top = input("Do you want toppings, enter yes/no:")
+        if (top == "yes"):
+            top_in = input("select topping:")
+            for keys in t1.topping_options:
+                if (top_in == keys):
+                    for key in s1.ice_dict:
+                        if (order == key):
+                            print("the cost of ", key, "-",
+                                  quantity * s1.ice_dict[key] + t1.topping_options[keys] * quantity)
         else:
-            self.print_and_display_total_cost(order,quantity)
-
-    def take_order(self,order,quantity):
-        if(order[0:9]=="chocolate"):
-            self.topping(order,quantity)
-        else:
-           self.print_and_display_total_cost(order,quantity)
+            print_and_display_total_cost(order, quantity)
 
 
-i1=Ice()
-i1.print_and_display_menu()
-i1.take_order(input("enter your favourite ice cream:"),int(input("enter quantity:")))
+def print_and_display_total_cost(order,quantity):
+    for key in s1.ice_dict:
+        if (key == order):
+            print("The cost of",key,":",quantity*s1.ice_dict[key])
+
+
+def toppin_calculation(order,quantity):
+        t1.print_topping()
+        t1.toppin_total_cost(order,quantity)
+
+def takes_order(order,quantity):
+    if(order[0:9]=="chocolate"):
+        toppin_calculation(order,quantity)
+    else:
+        print_and_display_total_cost(order,quantity)
+
+
+s1=Ice_Cream({"cup":10,"stick":15,"cone":20},{"chocolate":30,"vanila":25,"strawberry":35})
+t1=Topping({"choco chips":20,"caramel":10,"nuts":20})
+s1.print_menu_card()
+takes_order(input("enter favorite ice cream:"),int(input("enter quantity:")))
