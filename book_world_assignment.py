@@ -6,9 +6,8 @@ class Book:
     def is_affordable(self):
         if(self.book_price<1000):
             return self.book_name
-    def is_expensive(self):
-        if(self.book_price>1000):
-            return (self.book_name)
+        else:
+            pass
 
 
 class Author:
