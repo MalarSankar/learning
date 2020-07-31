@@ -1,0 +1,35 @@
+create schema Goride_registration;
+
+set search_path to Goride_registration;
+create table Driver(
+		  id numeric primary key,
+		  name text not null,
+		  age numeric not null,
+		  license_number varchar not null unique,
+		  validity_period date not null);
+		 
+		
+create table Car(
+		car_category text not null,
+		car_number varchar primary key,
+		color text not null,
+		company text not null,
+		model text not null,
+		driver_id numeric references Driver(id));
+
+
+
+create schema Goride_booking;
+
+set search_path to Goride_booking;
+
+create table Vechicle(
+		    id numeric primary key,
+		    category text not null,
+		    min_range numeric not null,
+		    max_range numeric not null,
+		    price varchar not null,
+		    ac_available text not null);
+		    
+		
+
